@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  @apply w-[5px];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[#0334F2];
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-400;
+}
+
+.editScroll::-webkit-scrollbar {
+  @apply w-[3px];
+  direction: ltr;
+}
+
+.editScroll {
+  direction: rtl;
+}
+.editScroll div {
+  direction: ltr;
+}
+
+.editScroll::-webkit-scrollbar-thumb {
+  @apply bg-[#0334F2] max-h-[156px];
+}
