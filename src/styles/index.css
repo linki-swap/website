@@ -15,7 +15,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#0334F2];
+  @apply bg-primary;
 }
 
 ::-webkit-scrollbar-track {
@@ -27,6 +27,10 @@
   direction: ltr;
 }
 
+.coins::-webkit-scrollbar {
+  @apply w-[2px];
+}
+
 .editScroll {
   direction: rtl;
 }
@@ -35,5 +39,5 @@
 }
 
 .editScroll::-webkit-scrollbar-thumb {
-  @apply bg-[#0334F2] max-h-[156px];
+  @apply bg-primary max-h-[156px];
 }

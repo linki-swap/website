@@ -53,7 +53,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`w-full z-20 relative border-b border-fuchsia-700 border-opacity-40`}
+      className={`w-full z-20 relative border-b border-fuchsia-700 bg-[#00071F] border-opacity-40`}
     >
       <nav>
         <div className="flex justify-between lg:justify-between py-6 items-center px-4 xl:px-[112px] sm:px-[64px] font-poppins mx-auto max-w-[1500px]">
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
                 {menuItems.map((item) => (
                   <li
                     key={item.key}
-                    className="text-base font-semibold leading-normal text-[#0334F2] transition-all cursor-pointer font-Inter hover:scale-105"
+                    className="text-base font-semibold leading-normal text-primary transition-all cursor-pointer font-Inter hover:scale-105"
                   >
                     {item.name === "Blog" ? (
                       <a href={item.where}>{item.name}</a>
@@ -94,8 +94,13 @@ const Header: React.FC = () => {
               </ul>
             </div>
           </div>
-          <div className="hidden lg:block">
-            <Button text="Register" link="/register" />
+          <div className="hidden lg:flex justify-start gap-4">
+            <Button
+              text="Sign in"
+              link="/register"
+              classname="rounded-lg border border-primary bg-transparent text-primary"
+            />
+            <Button text="Register" link="/sign" />
           </div>
           {/* Mobile Menu */}
           <div
@@ -123,7 +128,7 @@ const Header: React.FC = () => {
                 style={{ transitionDelay: `${item.key * 100}ms` }}
                 className={`hover:scale-105 ${
                   !navOpen && "hidden"
-                } border-[#0334F2] font-semibold leading-normal cursor-pointer text-[#0334F2] font-Inter hover:scale-105 border-opacity-20 py-3 border-dashed border-b-2 text-2xl transform transition-all ease-in-out duration-500`}
+                } border-primary font-semibold leading-normal cursor-pointer text-primary font-Inter hover:scale-105 border-opacity-20 py-3 border-dashed border-b-2 text-2xl transform transition-all ease-in-out duration-500`}
               >
                 <span>
                   {item.name === "Blog" ? (
@@ -150,7 +155,14 @@ const Header: React.FC = () => {
             ))}
           </ul>
           <div className="absolute w-full bottom-10 px-4 sm:px-[64px]">
-            <Button text="Register" link="/register" />
+            <div className="w-full">
+              <Button
+                text="Sign in"
+                link="/register"
+                classname="rounded-lg border mb-4 border-primary bg-transparent text-primary"
+              />
+              <Button text="Register" link="/sign" />
+            </div>
           </div>
         </motion.div>
       </nav>

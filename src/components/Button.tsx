@@ -1,28 +1,32 @@
 import React from "react";
 import { Link } from "react-scroll";
+import { twMerge } from "tailwind-merge";
 
 interface ButtonProps {
   link?: string;
   text: string;
   option?: "submit";
+  classname?: string;
 }
-
-const Button: React.FC<ButtonProps> = ({ link, text, option }) => {
+const Button: React.FC<ButtonProps> = ({ link, text, option, classname }) => {
   return (
     <>
       {link ? (
         <Link to={link}>
           <button
             type={option}
-            className="py-[10px] px-[18px] text-white bg-[#0334F2]  border border-[#0334F2] rounded-lg color-slide w-full"
+            className={twMerge(
+              `py-[10px]  px-[18px] text-white bg-primary border border-primary rounded-lg color-slide w-full`,
+              classname
+            )}
           >
-            <p>{text}</p>
+            <p className="text-base font-semibold">{text}</p>
           </button>
         </Link>
       ) : (
         <button
           type={option}
-          className="py-[10px] px-[18px] text-white bg-[#0334F2] border border-[#0334F2] rounded-lg color-slide w-full"
+          className="py-[10px] px-[18px] text-white bg-primaryorder border-primary rounded-lg color-slide w-full"
         >
           <p>{text}</p>
         </button>

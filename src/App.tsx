@@ -1,9 +1,9 @@
-import Home from "./pages/Home";
+import { Routes } from "./config";
 
 function App() {
   return (
     <>
-      <Home />
+      <Routes />
     </>
   );
 }

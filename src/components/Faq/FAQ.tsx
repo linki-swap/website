@@ -18,7 +18,7 @@ const FAQ: React.FC<faqItem> = ({ index, question, answer }) => {
   };
 
   return (
-    <section className="pt-6 border-t border-solid border-[#0334F2]">
+    <section className="pt-6 border-t border-solid border-primary">
       <div
         className="flex items-center justify-between mb-2 text-base font-medium tracking-normal cursor-pointer sm:text-lg font-inter"
         onClick={toggleOpen}

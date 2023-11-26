@@ -54,7 +54,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="space-y-4 sm:space-y-8">
-        <div className="w-full h-px bg-[#0334F2]" />
+        <div className="w-full h-px bg-primary" />
         <div className="flex flex-wrap justify-between max-sm:flex-col max-sm:space-y-4 max-sm:items-center">
           <p className="text-gray-400 text-sm max-sm:text-[10px] font-normal leading-[21px] max-sm:leading-[15px] tracking-tight">
             © 2023 LinkiSwap. All rights reserved.

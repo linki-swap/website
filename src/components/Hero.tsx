@@ -27,10 +27,10 @@ const Hero = () => {
         <div className="flex flex-col items-center space-y-4 sm:space-y-6">
           <a
             href="#"
-            className="relative pl-1 pr-2.5 py-1 bg-[#0334F2] rounded-2xl justify-start items-center gap-2 flex group"
+            className="relative pl-1 pr-2.5 py-1 bg-primary rounded-2xl justify-start items-center gap-2 flex group"
           >
             <div className="px-2 py-0.5 bg-violet-100 rounded-2xl transition-transform group-hover:translate-x-[156%] duration-300 ease-in-out flex justify-start gap-1">
-              <div className="text-center text-[#0334F2] text-xs font-medium leading-[18px]">
+              <div className="text-center text-primary text-xs font-medium leading-[18px]">
                 What’s new
               </div>
               <img
