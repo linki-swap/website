@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import dropdown from "../../assets/icon/chevron-down.svg";
+import dropdown from "../../assets/icon/chevron-down (1).svg";
 
 interface Option {
   name: string;
@@ -20,12 +20,12 @@ const Dropdown: React.FC<DropdownProps> = ({ options }) => {
   };
 
   return (
-    <div className="relative space-x-[14px] text-left rounded-lg w-full border border-gray-950 justify-start flex items-center">
-      <div className="border-r-gray-950 relative border-r px-2 sm:py-[10px] sm:px-[14px]">
+    <div className="relative space-x-[14px] text-left rounded-lg w-full border border-white justify-start flex items-center">
+      <div className="border-r-white relative border-r px-2 sm:py-[10px] sm:px-[14px]">
         <div>
           <button
             type="button"
-            className="inline-flex justify-center items-center w-full gap-x-2 text-sm sm:text-base font-normal leading-normal text-gray-950"
+            className="inline-flex justify-center items-center w-full gap-x-2 text-sm sm:text-base font-normal leading-normal text-white"
             id="options-menu"
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -80,7 +80,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options }) => {
           type="number"
           name="figure"
           placeholder="232"
-          className="p-[6px] max-sm:focus-visible:outline-none w-full"
+          className="p-[6px] bg-transparent text-white max-sm:focus-visible:outline-none w-full"
           id="figure"
         />
       </div>

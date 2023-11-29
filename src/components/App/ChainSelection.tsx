@@ -47,7 +47,7 @@ const ChainSelection = () => {
           </div>
           <div className="space-y-[6px]">
             <div className="text-gray-950 mt-8 text-sm font-medium leading-tight">
-              You receive
+              Recipient wallet
             </div>
             <div className="relative focus-within:border-black focus-within:border-2 px-[14px] py-[10px] space-x-[14px] text-left rounded-lg w-full border border-gray-950 justify-between flex items-center">
               <div className="flex-1">
