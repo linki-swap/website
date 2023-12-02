@@ -7,16 +7,26 @@ interface MenuItems {
 export const menuItems: MenuItems[] = [
   {
     key: 1,
+    name: "Home",
+    where: "/",
+  },
+  {
+    key: 2,
     name: "Developers",
     where: "developers",
   },
   {
-    key: 2,
+    key: 3,
+    name: "Coin Swap",
+    where: "/coinswap",
+  },
+  {
+    key: 4,
     name: "Blog",
     where: "#",
   },
   {
-    key: 3,
+    key: 5,
     name: "FAQ",
     where: "faq",
   },

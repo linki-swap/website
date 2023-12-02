@@ -3,7 +3,7 @@ import { SharedLayout } from "../components/layout/SharedLayout";
 import ScrollToTop from "../components/ScrollToTop";
 
 import Home from "../pages/Home";
-import App from "../pages/App";
+import CoinSwap from "../pages/CoinSwap";
 
 export function Routes() {
   const routes: RouteObject[] = [
@@ -17,7 +17,7 @@ export function Routes() {
       ),
       children: [
         { index: true, element: <Home /> },
-        { path: "/app", element: <App /> },
+        { path: "/coinswap", element: <CoinSwap /> },
       ],
     },
   ];

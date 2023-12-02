@@ -12,6 +12,7 @@ import HamburgerIcon from "./HamburgerIcon";
 import logo from "../assets/logo.svg";
 import { menuItems } from "../data/menuItems";
 import Button from "./Button";
+import { NavLink } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -80,14 +81,25 @@ const Header: React.FC = () => {
                 {menuItems.map((item) => (
                   <li
                     key={item.key}
-                    className="text-base font-semibold leading-normal text-primary transition-all cursor-pointer font-Inter hover:scale-105"
+                    className="text-base font-semibold leading-normal text-[#B0B2BA] hover:text-primary transition-all cursor-pointer font-Inter hover:scale-105"
                   >
                     {item.name === "Blog" ? (
                       <a href={item.where}>{item.name}</a>
-                    ) : (
+                    ) : item.name === "Developers" || item.name === "FAQ" ? (
                       <Link to={item.where} smooth={true} duration={500}>
                         {item.name}
                       </Link>
+                    ) : (
+                      <NavLink
+                        to={item.where}
+                        className={
+                          window.location.pathname === item.where
+                            ? "text-primary"
+                            : "text-[#B0B2BA]"
+                        }
+                      >
+                        {item.name}
+                      </NavLink>
                     )}
                   </li>
                 ))}
@@ -95,12 +107,7 @@ const Header: React.FC = () => {
             </div>
           </div>
           <div className="hidden lg:flex justify-start gap-4">
-            <Button
-              text="Sign in"
-              link="/register"
-              classname="rounded-lg border border-primary bg-transparent text-primary"
-            />
-            <Button text="Register" link="/sign" />
+            <Button text="Connect your wallet" link="/connect" />
           </div>
           {/* Mobile Menu */}
           <div
@@ -128,11 +135,30 @@ const Header: React.FC = () => {
                 style={{ transitionDelay: `${item.key * 100}ms` }}
                 className={`hover:scale-105 ${
                   !navOpen && "hidden"
-                } border-primary font-semibold leading-normal cursor-pointer text-primary font-Inter hover:scale-105 border-opacity-20 py-3 border-dashed border-b-2 text-2xl transform transition-all ease-in-out duration-500`}
+                } border-primary font-semibold leading-normal cursor-pointer text-[#B0B2BA] hover:text-primary font-Inter hover:scale-105 border-opacity-20 py-3 border-dashed border-b-2 text-2xl transform transition-all ease-in-out duration-500`}
               >
                 <span>
                   {item.name === "Blog" ? (
                     <a href={item.where}>{item.name}</a>
+                  ) : item.name === "Coin Swap" ? (
+                    <NavLink
+                      to={item.where}
+                      onClick={() => {
+                        setNavOpen(false);
+                        menuHeight.set(navOpen ? 0 : 0);
+                        setIsAnimating(false);
+                        setAnimationKey((prevKey) => prevKey + 1);
+                        window.location.pathname === item.where &&
+                          scrollToTop();
+                      }}
+                      className={
+                        window.location.pathname === item.where
+                          ? "text-primary"
+                          : "text-[#B0B2BA]"
+                      }
+                    >
+                      {item.name}
+                    </NavLink>
                   ) : (
                     <Link
                       to={item.where}
@@ -156,12 +182,7 @@ const Header: React.FC = () => {
           </ul>
           <div className="absolute w-full bottom-10 px-4 sm:px-[64px]">
             <div className="w-full">
-              <Button
-                text="Sign in"
-                link="/register"
-                classname="rounded-lg border mb-4 border-primary bg-transparent text-primary"
-              />
-              <Button text="Register" link="/sign" />
+              <Button text="Connect your wallet" link="/connect" />
             </div>
           </div>
         </motion.div>

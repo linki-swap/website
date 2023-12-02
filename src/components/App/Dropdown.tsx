@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import dropdown from "../../assets/icon/chevron-down (1).svg";
+// import dropdown from "../../assets/icon/chevron-down (1).svg";
+import dropdown from "../../assets/icon/chevron-down.svg";
+import placeholder from "../../assets/3.svg";
 
 interface Option {
   name: string;
@@ -11,7 +13,9 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options }) => {
-  const [selectedOption, setSelectedOption] = useState<Option>(options[0]);
+  const placeholderOption = { name: "Select network", icon: placeholder };
+  const [selectedOption, setSelectedOption] =
+    useState<Option>(placeholderOption);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleOptionSelect = (option: Option) => {
@@ -20,12 +24,12 @@ const Dropdown: React.FC<DropdownProps> = ({ options }) => {
   };
 
   return (
-    <div className="relative space-x-[14px] text-left rounded-lg w-full border border-white justify-start flex items-center">
-      <div className="border-r-white relative border-r px-2 sm:py-[10px] sm:px-[14px]">
+    <div className="relative space-x-[14px] text-left w-max">
+      <div className="relative px-2 py-[10px] sm:px-[14px]">
         <div>
           <button
             type="button"
-            className="inline-flex justify-center items-center w-full gap-x-2 text-sm sm:text-base font-normal leading-normal text-white"
+            className="inline-flex justify-center items-center w-full gap-x-2"
             id="options-menu"
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -35,7 +39,15 @@ const Dropdown: React.FC<DropdownProps> = ({ options }) => {
                 alt={selectedOption.name}
                 className="w-4 h-4 sm:w-5 sm:h-5"
               />
-              <div>{selectedOption.name}</div>
+              <div
+                className={`text-sm sm:text-base font-normal leading-normal ${
+                  selectedOption === placeholderOption
+                    ? "text-gray-400"
+                    : "text-gray-950"
+                }`}
+              >
+                {selectedOption.name}
+              </div>
             </div>
             <img
               src={dropdown}
@@ -74,15 +86,6 @@ const Dropdown: React.FC<DropdownProps> = ({ options }) => {
             </div>
           </div>
         )}
-      </div>
-      <div className="w-[60%] sm:w-[66%]">
-        <input
-          type="number"
-          name="figure"
-          placeholder="232"
-          className="p-[6px] bg-transparent text-white max-sm:focus-visible:outline-none w-full"
-          id="figure"
-        />
       </div>
     </div>
   );
