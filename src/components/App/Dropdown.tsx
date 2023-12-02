@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import dropdown from "../../assets/icon/chevron-down (1).svg";
 import dropdown from "../../assets/icon/chevron-down.svg";
+import dropdownLight from "../../assets/icon/chevron-down (1).svg";
 import placeholder from "../../assets/3.svg";
 
 interface Option {
@@ -13,15 +14,23 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options }) => {
+  const [isHome, setIsHome] = useState(false);
   const placeholderOption = { name: "Select network", icon: placeholder };
   const [selectedOption, setSelectedOption] =
     useState<Option>(placeholderOption);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleOptionSelect = (option: Option) => {
     setSelectedOption(option);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    if (window.location.pathname === "/") {
+      setIsHome(true);
+    }
+  });
 
   return (
     <div className="relative space-x-[14px] text-left w-max">
@@ -43,6 +52,8 @@ const Dropdown: React.FC<DropdownProps> = ({ options }) => {
                 className={`text-sm sm:text-base font-normal leading-normal ${
                   selectedOption === placeholderOption
                     ? "text-gray-400"
+                    : isHome
+                    ? "text-white"
                     : "text-gray-950"
                 }`}
               >
@@ -50,7 +61,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options }) => {
               </div>
             </div>
             <img
-              src={dropdown}
+              src={isHome ? dropdownLight : dropdown}
               alt="dropdown icon"
               className={`w-4 h-4 sm:w-5 sm:h-5 transition-all duration-500 ${
                 isOpen ? "rotate-180" : "rotate-0"

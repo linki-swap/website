@@ -1,10 +1,7 @@
 import { slideAnimation } from "../config/motion";
 import { motion } from "framer-motion";
 
-import { coinData } from "../data/coinData";
-import Dropdown from "./App/Dropdown";
-import Button from "./Button";
-import bg from "../assets/color.svg";
+import ChainSelection from "./App/ChainSelection";
 
 const Hero = () => {
   return (
@@ -30,42 +27,7 @@ const Hero = () => {
               {...slideAnimation("up")}
               className="flex justify-center"
             >
-              <div className="relative overflow-hidden rounded-3xl bg-[#000516] py-8 px-[40px] w-full max-w-[580px]">
-                <img
-                  src={bg}
-                  alt="bg-colo"
-                  className="h-full w-auto absolute top-0 left-0"
-                />
-                <div className="space-y-6 mb-[48px]">
-                  <div className="space-y-[6px]">
-                    <div className="text-white mt-8 text-sm font-medium leading-tight">
-                      You send
-                    </div>
-                    <div>
-                      <Dropdown options={coinData} />
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <p className="text-neutral-400 text-[10px] font-semibold leading-[15px] tracking-tight">
-                      No hidden fees
-                    </p>
-                    <p className="text-neutral-400 text-[10px] font-semibold leading-[15px] tracking-tight">
-                      Estimated rate: 1 ETH ≈ 21.232 DOGE
-                    </p>
-                  </div>
-                  <div className="space-y-[6px]">
-                    <div className="text-white mt-8 text-sm font-medium leading-tight">
-                      You receive
-                    </div>
-                    <div>
-                      <Dropdown options={coinData} />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-center w-full">
-                  <Button text="Exchange" link="/" classname="w-[326px]" />
-                </div>
-              </div>
+              <ChainSelection />
             </motion.div>
           </div>
         </div>
