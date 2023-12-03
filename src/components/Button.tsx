@@ -6,9 +6,19 @@ interface ButtonProps {
   link?: string;
   text: string;
   option?: "submit";
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   classname?: string;
+  disabled?: boolean; // Add the disabled prop
 }
-const Button: React.FC<ButtonProps> = ({ link, text, option, classname }) => {
+
+const Button: React.FC<ButtonProps> = ({
+  link,
+  text,
+  option,
+  classname,
+  disabled,
+  onClick,
+}) => {
   return (
     <>
       {link ? (
@@ -16,9 +26,10 @@ const Button: React.FC<ButtonProps> = ({ link, text, option, classname }) => {
           <button
             type={option}
             className={twMerge(
-              `py-[10px]  px-[18px] text-white bg-primary border border-primary rounded-lg color-slide w-full`,
+              `py-[10px] px-[18px] text-white bg-primary border border-primary rounded-lg color-slide w-full`,
               classname
             )}
+            disabled={disabled}
           >
             <p className="text-base font-semibold">{text}</p>
           </button>
@@ -26,7 +37,14 @@ const Button: React.FC<ButtonProps> = ({ link, text, option, classname }) => {
       ) : (
         <button
           type={option}
-          className="py-[10px] px-[18px] text-white bg-primaryorder border-primary rounded-lg color-slide w-full"
+          onClick={onClick}
+          className={twMerge(
+            `py-[10px] px-[18px] rounded-lg w-full`,
+            disabled
+              ? "bg-[#B0B2BA] text-[#545969]"
+              : "bg-primary border border-primary text-white color-slide"
+          )}
+          disabled={disabled}
         >
           <p>{text}</p>
         </button>

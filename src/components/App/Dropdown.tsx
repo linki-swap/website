@@ -4,16 +4,17 @@ import dropdown from "../../assets/icon/chevron-down.svg";
 import dropdownLight from "../../assets/icon/chevron-down (1).svg";
 import placeholder from "../../assets/3.svg";
 
-interface Option {
+export interface Option {
   name: string;
   icon: string;
 }
 
 interface DropdownProps {
   options: Option[];
+  onOptionSelect: (option: Option) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options }) => {
+const Dropdown: React.FC<DropdownProps> = ({ options, onOptionSelect }) => {
   const [isHome, setIsHome] = useState(false);
   const placeholderOption = { name: "Select network", icon: placeholder };
   const [selectedOption, setSelectedOption] =
@@ -24,6 +25,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options }) => {
   const handleOptionSelect = (option: Option) => {
     setSelectedOption(option);
     setIsOpen(false);
+    onOptionSelect(option);
   };
 
   useEffect(() => {

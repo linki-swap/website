@@ -3,7 +3,7 @@ import ChainSelection from "../components/App/ChainSelection";
 const CoinSwap = () => {
   return (
     <section className="relative bg-[#E6E6E9] h-full sm:h-screen">
-      <div className="flex max-lg:flex-col gap-y-8 justify-between gap-x-10 w-full px-4 xl:px-[112px] sm:px-[64px] py-14 max-w-[1500px] mx-auto">
+      <div className="flex max-lg:flex-col gap-y-8 justify-center gap-x-10 w-full px-4 xl:px-[112px] sm:px-[64px] py-14 max-w-[1500px] mx-auto">
         <ChainSelection />
         <div className="rounded-3xl h-max bg-white p-6 sm:p-14 space-y-4">
           <h2 className="text-gray-950 text-lg sm:text-2xl font-medium leading-loose">
