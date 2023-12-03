@@ -11,9 +11,12 @@ import bg from "../../assets/color.svg";
 import { walletData } from "../../data/walletData";
 import x from "../../assets/icon/x.svg";
 
+import state from "../../store";
+
 const ChainSelection = () => {
   const [isHome, setIsHome] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [text, setText] = useState("Connect your wallet");
   const [pay, setPay] = useState("");
   const [receive, setReceive] = useState("");
   const [selectedOptions, setSelectedOptions] = useState({
@@ -30,6 +33,18 @@ const ChainSelection = () => {
     !selectedOptions.payCoin ||
     !selectedOptions.fromReceive ||
     !selectedOptions.receiveCoin;
+
+  const connect = () => {
+    setText("Swap coin");
+    setIsOpen(false);
+
+    state.processing = true;
+  };
+
+  useEffect(() => {
+    state.payCoin = selectedOptions.payCoin;
+    state.receiveCoin = selectedOptions.receiveCoin;
+  }, [selectedOptions]);
 
   useEffect(() => {
     if (window.location.pathname === "/") {
@@ -61,15 +76,16 @@ const ChainSelection = () => {
               </div>
               <div className="space-y-3 flex justify-center flex-col items-center">
                 {walletData.map((item, index) => (
-                  <div
+                  <button
                     key={index}
+                    onClick={connect}
                     className="max-w-[325px] w-full py-3 rounded-lg border border-gray-400 justify-center items-center gap-2 inline-flex"
                   >
                     <img className="w-6 h-6" src={item.icon} />
                     <p className="text-gray-950 text-sm sm:text-base font-semibold leading-normal">
                       {item.name}
                     </p>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -98,7 +114,7 @@ const ChainSelection = () => {
           </p>
         </div>
         <div className="space-y-6 relative z-40 mb-[48px] mt-8">
-          <div className="flex max-md:flex-col gap-y-4 justify-between gap-x-4">
+          <div className="flex max-md:flex-col gap-y-4 justify-start gap-x-4">
             <div className="space-y-2">
               <div
                 className={`text-sm font-medium leading-tight ${
@@ -116,7 +132,7 @@ const ChainSelection = () => {
                 />
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 w-full">
               <div
                 className={`text-sm font-medium leading-tight ${
                   isHome ? "text-white" : "text-gray-950"
@@ -128,22 +144,22 @@ const ChainSelection = () => {
                 <div className="border-r-gray-400 border-r flex-2">
                   <Dropdown
                     options={coinData}
-                    onOptionSelect={(option) =>
+                    onOptionSelect={(option) => {
                       setSelectedOptions({
                         ...selectedOptions,
                         payCoin: option,
-                      })
-                    }
+                      });
+                    }}
                   />
                 </div>
-                <div className="w-[35%]">
+                <div className="w-full">
                   <input
                     type="number"
                     name="figure"
                     placeholder="Amount"
                     value={pay}
                     onChange={(e) => setPay(e.target.value)}
-                    className="p-[6px] w-full bg-transparent text-gray-950 max-sm:focus-visible:outline-none"
+                    className="p-[6px] w-full bg-transparent text-gray-950 focus-visible:outline-none"
                     id="figure"
                   />
                 </div>
@@ -157,7 +173,7 @@ const ChainSelection = () => {
               className="w-10 h-10"
             />
           </div>
-          <div className="flex max-md:flex-col gap-y-4 justify-between gap-x-4">
+          <div className="flex max-md:flex-col gap-y-4 justify-start gap-x-4">
             <div className="space-y-2">
               <div
                 className={`text-sm font-medium leading-tight ${
@@ -178,7 +194,7 @@ const ChainSelection = () => {
                 />
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 w-full">
               <div
                 className={`text-sm font-medium leading-tight ${
                   isHome ? "text-white" : "text-gray-950"
@@ -190,22 +206,22 @@ const ChainSelection = () => {
                 <div className="border-r-gray-400 border-r flex-2">
                   <Dropdown
                     options={coinData}
-                    onOptionSelect={(option) =>
+                    onOptionSelect={(option) => {
                       setSelectedOptions({
                         ...selectedOptions,
                         receiveCoin: option,
-                      })
-                    }
+                      });
+                    }}
                   />
                 </div>
-                <div className="w-[35%]">
+                <div className="w-full">
                   <input
                     type="number"
                     name="figure"
                     placeholder="Amount"
                     value={receive}
                     onChange={(e) => setReceive(e.target.value)}
-                    className="p-[6px] w-full bg-transparent text-gray-950 max-sm:focus-visible:outline-none"
+                    className="p-[6px] w-full bg-transparent text-gray-950 focus-visible:outline-none"
                     id="figure"
                   />
                 </div>
@@ -215,7 +231,7 @@ const ChainSelection = () => {
         </div>
         <div className="flex  relative z-30 justify-center w-full">
           <Button
-            text="Connect your wallet"
+            text={text}
             classname="w-[326px]"
             onClick={() => setIsOpen(true)}
             disabled={isButtonDisabled}
