@@ -15,6 +15,9 @@ import state from "../../store";
 
 const ChainSelection = () => {
   const [isHome, setIsHome] = useState(false);
+  const swapClick = () => (state.success = true);
+  const connectClick = () => setIsOpen(true);
+  const [onClick, setOnclick] = useState(() => connectClick);
   const [isOpen, setIsOpen] = useState(false);
   const [text, setText] = useState("Connect your wallet");
   const [pay, setPay] = useState("");
@@ -38,6 +41,7 @@ const ChainSelection = () => {
     setText("Swap coin");
     setIsOpen(false);
 
+    setOnclick(() => swapClick);
     state.processing = true;
   };
 
@@ -233,7 +237,7 @@ const ChainSelection = () => {
           <Button
             text={text}
             classname="w-[326px]"
-            onClick={() => setIsOpen(true)}
+            onClick={onClick}
             disabled={isButtonDisabled}
           />
         </div>
