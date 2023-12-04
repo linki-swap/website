@@ -42,7 +42,8 @@ const Button: React.FC<ButtonProps> = ({
             `py-[10px] px-[18px] rounded-lg w-full`,
             disabled
               ? "bg-[#B0B2BA] text-[#545969]"
-              : "bg-primary border border-primary text-white color-slide"
+              : "bg-primary border border-primary text-white color-slide",
+            classname
           )}
           disabled={disabled}
         >

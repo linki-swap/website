@@ -12,11 +12,16 @@ export interface Option {
 interface DropdownProps {
   options: Option[];
   onOptionSelect: (option: Option) => void;
+  text: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onOptionSelect }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  options,
+  onOptionSelect,
+  text,
+}) => {
   const [isHome, setIsHome] = useState(false);
-  const placeholderOption = { name: "Select network", icon: placeholder };
+  const placeholderOption = { name: text, icon: placeholder };
   const [selectedOption, setSelectedOption] =
     useState<Option>(placeholderOption);
 

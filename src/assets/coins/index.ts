@@ -1,5 +1,5 @@
 import one from "./01.png";
-import two from "./02.png";
+import two from "./etherium.png";
 import three from "./03.png";
 import four from "./04.png";
 import five from "./05.png";

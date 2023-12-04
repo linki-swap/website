@@ -48,7 +48,7 @@ const CoinSwap = () => {
             <ChainSelection />
             <div className="rounded-3xl h-max bg-white p-6 sm:p-14 space-y-4">
               <h2 className="text-gray-950 text-lg sm:text-2xl font-medium leading-loose">
-                Transaction journey
+                Summary
               </h2>
               <div className="w-full h-px bg-zinc-300" />
               {snap.processing ? (

@@ -6,7 +6,7 @@ import Dropdown, { Option } from "./Dropdown";
 import Button from "../Button";
 import { coinData } from "../../data/coinData";
 import transfer from "../../assets/icon/transfer.svg";
-import transferLight from "../../assets/icon/transferLight.svg";
+// import transferLight from "../../assets/icon/transferLight.svg";
 import bg from "../../assets/color.svg";
 import { walletData } from "../../data/walletData";
 import x from "../../assets/icon/x.svg";
@@ -118,7 +118,7 @@ const ChainSelection = () => {
           </p>
         </div>
         <div className="space-y-6 relative z-40 mb-[48px] mt-8">
-          <div className="flex max-md:flex-col gap-y-4 justify-start gap-x-4">
+          <div className="flex sm:items-end max-md:flex-col gap-y-4 justify-start gap-x-4">
             <div className="space-y-2">
               <div
                 className={`text-sm font-medium leading-tight ${
@@ -130,6 +130,7 @@ const ChainSelection = () => {
               <div className="justify-start border rounded-lg border-gray-400 flex items-center">
                 <Dropdown
                   options={coinData}
+                  text="Select network"
                   onOptionSelect={(option) =>
                     setSelectedOptions({ ...selectedOptions, fromPay: option })
                   }
@@ -137,17 +138,11 @@ const ChainSelection = () => {
               </div>
             </div>
             <div className="space-y-2 w-full">
-              <div
-                className={`text-sm font-medium leading-tight ${
-                  isHome ? "text-white" : "text-gray-950"
-                }`}
-              >
-                You will pay
-              </div>
               <div className="flex items-center justify-start rounded-lg border border-gray-400">
                 <div className="border-r-gray-400 border-r flex-2">
                   <Dropdown
                     options={coinData}
+                    text="Select token"
                     onOptionSelect={(option) => {
                       setSelectedOptions({
                         ...selectedOptions,
@@ -163,7 +158,9 @@ const ChainSelection = () => {
                     placeholder="Amount"
                     value={pay}
                     onChange={(e) => setPay(e.target.value)}
-                    className="p-[6px] w-full bg-transparent text-gray-950 focus-visible:outline-none"
+                    className={`p-[6px] w-full bg-transparent ${
+                      isHome ? "text-white" : "text-gray-950"
+                    } focus-visible:outline-none`}
                     id="figure"
                   />
                 </div>
@@ -171,24 +168,21 @@ const ChainSelection = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <img
-              src={isHome ? transferLight : transfer}
-              alt="transfer icon"
-              className="w-10 h-10"
-            />
+            <img src={transfer} alt="transfer icon" className="w-10 h-10" />
           </div>
-          <div className="flex max-md:flex-col gap-y-4 justify-start gap-x-4">
+          <div className="flex sm:items-end max-md:flex-col gap-y-4 justify-start gap-x-4">
             <div className="space-y-2">
               <div
                 className={`text-sm font-medium leading-tight ${
                   isHome ? "text-white" : "text-gray-950"
                 }`}
               >
-                From
+                To
               </div>
               <div className="justify-start border  rounded-lg border-gray-400 flex items-center">
                 <Dropdown
                   options={coinData}
+                  text="Select network"
                   onOptionSelect={(option) =>
                     setSelectedOptions({
                       ...selectedOptions,
@@ -199,17 +193,11 @@ const ChainSelection = () => {
               </div>
             </div>
             <div className="space-y-2 w-full">
-              <div
-                className={`text-sm font-medium leading-tight ${
-                  isHome ? "text-white" : "text-gray-950"
-                }`}
-              >
-                You will receive
-              </div>
               <div className="flex items-center justify-start rounded-lg border border-gray-400">
                 <div className="border-r-gray-400 border-r flex-2">
                   <Dropdown
                     options={coinData}
+                    text="Select token"
                     onOptionSelect={(option) => {
                       setSelectedOptions({
                         ...selectedOptions,
@@ -225,7 +213,9 @@ const ChainSelection = () => {
                     placeholder="Amount"
                     value={receive}
                     onChange={(e) => setReceive(e.target.value)}
-                    className="p-[6px] w-full bg-transparent text-gray-950 focus-visible:outline-none"
+                    className={`p-[6px] w-full bg-transparent ${
+                      isHome ? "text-white" : "text-gray-950"
+                    } focus-visible:outline-none`}
                     id="figure"
                   />
                 </div>
@@ -233,10 +223,10 @@ const ChainSelection = () => {
             </div>
           </div>
         </div>
-        <div className="flex  relative z-30 justify-center w-full">
+        <div className="flex relative z-30 justify-center w-full">
           <Button
             text={text}
-            classname="w-[326px]"
+            classname="max-w-[326px]"
             onClick={onClick}
             disabled={isButtonDisabled}
           />
