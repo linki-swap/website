@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useSDK } from "@metamask/sdk-react";
+
 import { motion } from "framer-motion";
 import { fadeAnimation } from "../../config/motion";
 
@@ -12,8 +14,30 @@ import { walletData } from "../../data/walletData";
 import x from "../../assets/icon/x.svg";
 
 import state from "../../store";
+interface WalletItem {
+  name: string;
+  icon: string;
+}
 
 const ChainSelection = () => {
+  const [account, setAccount] = useState<string | undefined>();
+  const { sdk, connected, chainId } = useSDK();
+
+  const connectMetamask = async () => {
+    try {
+      const result = await sdk?.connect();
+
+      if (result != null) {
+        const accounts = result as string[]; // Type assertion
+        setAccount(accounts[0]);
+      } else {
+        // Handle the case when result is null or undefined
+      }
+    } catch (err) {
+      console.warn(`failed to connect..`, err);
+    }
+  };
+
   const [isHome, setIsHome] = useState(false);
   const swapClick = () => (state.success = true);
   const connectClick = () => setIsOpen(true);
@@ -37,10 +61,12 @@ const ChainSelection = () => {
     !selectedOptions.fromReceive ||
     !selectedOptions.receiveCoin;
 
-  const connect = () => {
+  const connect = (item: WalletItem) => {
+    if (item.name === "Metamask") {
+      connectMetamask();
+    }
     setText("Swap coin");
     setIsOpen(false);
-
     setOnclick(() => swapClick);
     state.processing = true;
   };
@@ -82,7 +108,7 @@ const ChainSelection = () => {
                 {walletData.map((item, index) => (
                   <button
                     key={index}
-                    onClick={connect}
+                    onClick={() => connect(item)}
                     className="max-w-[325px] w-full py-3 rounded-lg border border-gray-400 justify-center items-center gap-2 inline-flex"
                   >
                     <img className="w-6 h-6" src={item.icon} />
@@ -237,6 +263,15 @@ const ChainSelection = () => {
             alt="bg-colo"
             className="h-full w-auto absolute top-0 left-0"
           />
+        )}
+        {connected && (
+          <div>
+            <>
+              {chainId && `Connected chain: ${chainId}`}
+              <p></p>
+              {account && `Connected account: ${account}`}
+            </>
+          </div>
         )}
       </div>
     </div>
