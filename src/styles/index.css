@@ -41,3 +41,35 @@
 .editScroll::-webkit-scrollbar-thumb {
   @apply bg-primary max-h-[156px];
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "nimbus";
+  font-weight: 400;
+  src: url("../fonts/nimbus-sans-l_regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "nimbus";
+  font-weight: 700;
+  src: url("../fonts/nimbus-sans-l_bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "nimbus";
+  font-weight: 600;
+  src: url("../fonts/nimbus-sans-l_regular-condensed.otf") format("opentype");
+}
+
+body {
+  @apply relative;
+}
+
+.small::-webkit-scrollbar {
+  @apply w-[2px];
+}
+
+.no-scroll {
+  overflow: hidden;
+}
