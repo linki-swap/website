@@ -64,7 +64,7 @@ const CoinSwap = () => {
                         {snap.payCoin?.name}
                       </h2>
                       <p className="text-gray-400 text-[11px] font-semibold leading-none tracking-wide">
-                        ETH
+                        {snap.payCoin?.tag}
                       </p>
                     </div>
                   </div>
@@ -101,7 +101,7 @@ const CoinSwap = () => {
                         {snap.receiveCoin?.name}
                       </h2>
                       <p className="text-gray-400 text-[11px] font-semibold leading-none tracking-wide">
-                        BSC
+                        {snap.receiveCoin?.tag}
                       </p>
                     </div>
                   </div>

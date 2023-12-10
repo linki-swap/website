@@ -3,6 +3,7 @@ import { proxy } from "valtio";
 interface Option {
   name: string;
   icon: string;
+  tag: string;
 }
 
 interface State {

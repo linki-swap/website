@@ -13,6 +13,8 @@ import bg from "../../assets/color.svg";
 import { walletData } from "../../data/walletData";
 import x from "../../assets/icon/x.svg";
 
+import axios from "axios";
+
 import state from "../../store";
 interface WalletItem {
   name: string;
@@ -22,6 +24,10 @@ interface WalletItem {
 const ChainSelection = () => {
   const [account, setAccount] = useState<string | undefined>();
   const { sdk, connected, chainId } = useSDK();
+
+  const [conversionResult, setConversionResult] = useState<number | undefined>(
+    undefined
+  );
 
   const connectMetamask = async () => {
     try {
@@ -44,8 +50,7 @@ const ChainSelection = () => {
   const [onClick, setOnclick] = useState(() => connectClick);
   const [isOpen, setIsOpen] = useState(false);
   const [text, setText] = useState("Connect your wallet");
-  const [pay, setPay] = useState("");
-  const [receive, setReceive] = useState("");
+  const [pay, setPay] = useState<number | undefined>(undefined);
   const [selectedOptions, setSelectedOptions] = useState({
     fromPay: null as Option | null,
     payCoin: null as Option | null,
@@ -53,9 +58,62 @@ const ChainSelection = () => {
     receiveCoin: null as Option | null,
   });
 
+  useEffect(() => {
+    const endpoint = "live";
+    const accessKey = "15d562d5d1298de606ede1d19e678c6e";
+
+    const fetchData = async () => {
+      try {
+        const receiveCoinCode = selectedOptions.receiveCoin?.tag;
+        const payCoinCode = selectedOptions.payCoin?.tag;
+
+        if (
+          pay === undefined ||
+          receiveCoinCode === undefined ||
+          receiveCoinCode === null ||
+          payCoinCode === undefined ||
+          payCoinCode === null
+        )
+          return;
+        const response = await axios.get(
+          `http://api.coinlayer.com/api/${endpoint}?access_key=${accessKey}&from=${selectedOptions.payCoin?.tag}&to=${selectedOptions.receiveCoin?.tag}&amount=${pay}`
+        );
+
+        const exchangeRates = response.data.rates;
+        let receiveRate: number | undefined;
+        let payRate: number | undefined;
+        let result: number | undefined;
+
+        if (receiveCoinCode !== undefined && receiveCoinCode !== null) {
+          receiveRate = exchangeRates?.[receiveCoinCode];
+        }
+        if (payCoinCode !== undefined && payCoinCode !== null) {
+          payRate = exchangeRates?.[payCoinCode];
+        }
+
+        if (
+          receiveRate !== undefined &&
+          payRate !== undefined &&
+          pay !== undefined
+        ) {
+          // Perform the conversion
+          result = (payRate / receiveRate) * pay;
+
+          // Update state with the result if needed
+          setConversionResult(result);
+        } else {
+          console.error("Insufficient data for conversion");
+        }
+      } catch (error) {
+        console.error("Error fetching conversion:", error);
+      }
+    };
+
+    fetchData();
+  }, [pay, selectedOptions]);
+
   const isButtonDisabled =
     !pay ||
-    !receive ||
     !selectedOptions.fromPay ||
     !selectedOptions.payCoin ||
     !selectedOptions.fromReceive ||
@@ -182,8 +240,14 @@ const ChainSelection = () => {
                     type="number"
                     name="figure"
                     placeholder="Amount"
-                    value={pay}
-                    onChange={(e) => setPay(e.target.value)}
+                    value={pay === undefined ? "" : pay.toString()}
+                    onChange={(e) =>
+                      setPay(
+                        e.target.value !== ""
+                          ? parseFloat(e.target.value)
+                          : undefined
+                      )
+                    }
                     className={`p-[6px] w-full bg-transparent ${
                       isHome ? "text-white" : "text-gray-950"
                     } focus-visible:outline-none`}
@@ -232,18 +296,12 @@ const ChainSelection = () => {
                     }}
                   />
                 </div>
-                <div className="w-full">
-                  <input
-                    type="number"
-                    name="figure"
-                    placeholder="Amount"
-                    value={receive}
-                    onChange={(e) => setReceive(e.target.value)}
-                    className={`p-[6px] w-full bg-transparent ${
-                      isHome ? "text-white" : "text-gray-950"
-                    } focus-visible:outline-none`}
-                    id="figure"
-                  />
+                <div
+                  className={`p-[6px] w-full bg-transparent ${
+                    isHome ? "text-white" : "text-gray-950"
+                  }`}
+                >
+                  {conversionResult}
                 </div>
               </div>
             </div>

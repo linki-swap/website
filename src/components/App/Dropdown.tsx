@@ -7,6 +7,7 @@ import placeholder from "../../assets/3.svg";
 export interface Option {
   name: string;
   icon: string;
+  tag: string;
 }
 
 interface DropdownProps {
@@ -21,7 +22,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   text,
 }) => {
   const [isHome, setIsHome] = useState(false);
-  const placeholderOption = { name: text, icon: placeholder };
+  const placeholderOption = { name: text, icon: placeholder, tag: "" };
   const [selectedOption, setSelectedOption] =
     useState<Option>(placeholderOption);
 
