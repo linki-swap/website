@@ -23,12 +23,9 @@ const Hero = () => {
                 now to stay updated on our journey!
               </motion.p>
             </div>
-            <motion.div
-              {...slideAnimation("up")}
-              className="flex justify-center"
-            >
+            <div className="flex justify-center">
               <ChainSelection />
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

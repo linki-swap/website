@@ -60,7 +60,7 @@ const ChainSelection = () => {
 
   useEffect(() => {
     const endpoint = "live";
-    const accessKey = "15d562d5d1298de606ede1d19e678c6e";
+    const accessKey = import.meta.env.VITE_ACCESS_KEY;
 
     const fetchData = async () => {
       try {
