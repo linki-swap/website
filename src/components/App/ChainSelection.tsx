@@ -7,6 +7,7 @@ import { fadeAnimation } from "../../config/motion";
 import Dropdown, { Option } from "./Dropdown";
 import Button from "../Button";
 import { coinData } from "../../data/coinData";
+import { networksData } from "../../data/networks";
 import transfer from "../../assets/icon/transfer.svg";
 // import transferLight from "../../assets/icon/transferLight.svg";
 import bg from "../../assets/color.svg";
@@ -213,7 +214,7 @@ const ChainSelection = () => {
               </div>
               <div className="justify-start border rounded-lg border-gray-400 flex items-center">
                 <Dropdown
-                  options={coinData}
+                  options={networksData}
                   text="Select network"
                   onOptionSelect={(option) =>
                     setSelectedOptions({ ...selectedOptions, fromPay: option })
@@ -271,7 +272,7 @@ const ChainSelection = () => {
               </div>
               <div className="justify-start border  rounded-lg border-gray-400 flex items-center">
                 <Dropdown
-                  options={coinData}
+                  options={networksData}
                   text="Select network"
                   onOptionSelect={(option) =>
                     setSelectedOptions({

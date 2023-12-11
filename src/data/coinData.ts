@@ -8,33 +8,13 @@ interface coinData {
 
 export const coinData: coinData[] = [
   {
-    icon: coinImages[2],
-    name: "Etherium",
-    tag: "ETH",
+    icon: coinImages["link"],
+    name: "LINK",
+    tag: "LINK",
   },
   {
-    icon: coinImages[1],
-    name: "Bitcoin",
-    tag: "BTC",
-  },
-  {
-    icon: coinImages[2],
-    name: "Etherium",
-    tag: "ETH",
-  },
-  {
-    icon: coinImages[1],
-    name: "Bitcoin",
-    tag: "BTC",
-  },
-  {
-    icon: coinImages[2],
-    name: "Etherium",
-    tag: "ETH",
-  },
-  {
-    icon: coinImages[1],
-    name: "Bitcoin",
-    tag: "BTC",
+    icon: coinImages["usdc"],
+    name: "USDC",
+    tag: "USDC",
   },
 ];
