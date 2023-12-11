@@ -9,7 +9,12 @@ interface coinData {
 export const coinData: coinData[] = [
   {
     icon: coinImages["link"],
-    name: "LINK",
+    name: "LINK-BnM",
+    tag: "LINK",
+  },
+  {
+    icon: coinImages["link"],
+    name: "LINK-LnM",
     tag: "LINK",
   },
   {
